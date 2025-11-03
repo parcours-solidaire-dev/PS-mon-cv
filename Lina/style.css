@@ -1,9 +1,9 @@
 /* les couleurs que l'on peut personnaliser */
 :root {
     --couleur-principale: #06b6d4; /* turquoise */
-    --couleur-secondaire: #10b981; /* vert */
+    --couleur-secondaire: #7510b9; /* vert */
     --couleur-accent: #a7f3d0; /* Vert clair */
-    --couleur-fond: #0f172a;
+    --couleur-fond: #401a48;
     --couleur-carte: #1e293b;
     --couleur-texte: #f1f5f9;
     --couleur-texte-gris: #94a3b8;
