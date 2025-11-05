@@ -1,0 +1,548 @@
+/* les couleurs que l'on peut personnaliser */
+:root {
+    --couleur-principale: #131a1b; /* turquoise */
+    --couleur-secondaire: #9eafaa; /* vert */
+    --couleur-accent: #ddeae4; /* Vert clair */
+    --couleur-fond: #133c9e;
+    --couleur-carte: #e5e9f0;
+    --couleur-texte: #0b0e12;
+    --couleur-texte-gris: #0b1016;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Indie Flower", cursive;
+    font-weight: 550; 
+    background: var(--couleur-fond);
+    color: var(--couleur-texte);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* fond animé avec dégradé */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--couleur-principale) 0%, var(--couleur-secondaire) 100%);
+    opacity: 0.1;
+    z-index: -1;
+}
+
+/* conteneur principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* profil */
+.header {
+    text-align: center;
+    padding: 60px 20px 40px;
+    position: relative;
+}
+
+/* image centrée  */
+.flip-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: flotte 3s ease-in-out infinite;
+}
+
+.flip-card {
+  width: 180px;
+  height: 180px;
+  perspective: 1000px; 
+  cursor: pointer;
+}
+
+.flip-card-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* l'image tourne */
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; 
+  border-radius: 50%; /* pp ronde */
+}
+
+.flip-card-front img,
+.flip-card-back img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* face arrière */
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+@keyframes flotte {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.nom {
+    font-size: 3.5em;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--couleur-principale), var(--couleur-secondaire));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+    letter-spacing: -2px;
+}
+
+.accroche {
+    font-size: 1.3em;
+    color: var(--couleur-texte-gris);
+    max-width: 600px;
+    margin: 0 auto 30px;
+}
+
+/* la citation "à propos" */
+.a-propos-cite {
+    background: var(--couleur-carte);
+    padding: 30px 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(6, 182, 212, 0.2);
+    max-width: 800px;
+    margin: 0 auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.a-propos-cite:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 60px rgba(6, 182, 212, 0.4);
+}
+
+.a-propos-cite p {
+    color: var(--couleur-texte-gris);
+    line-height: 1.8;
+    font-size: 1.2em;
+}
+
+/* sections */
+.section {
+    margin: 35px 0;
+}
+
+.section-titre {
+    font-size: 2.5em;
+    font-weight: 800;
+    margin-bottom: 30px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.section-titre::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 60%;
+    background: linear-gradient(180deg, var(--couleur-principale), var(--couleur-secondaire));
+    border-radius: 10px;
+}
+
+/* section du profil */
+.profil-content {
+    background: var(--couleur-carte);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(6, 182, 212, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profil-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 60px rgba(6, 182, 212, 0.4);
+}
+
+.info-ligne {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+    font-size: 1.1em;
+}
+
+.info-ligne strong {
+    color: var(--couleur-principale);
+    margin-right: 10px;
+    min-width: 100px;
+}
+
+/* section passions */
+.passions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+.passion-card {
+    background: var(--couleur-carte);
+    padding: 30px 20px;
+    border-radius: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+
+.passion-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    border-color: var(--couleur-principale);
+    box-shadow: 0 20px 40px rgba(6, 182, 212, 0.3);
+}
+
+.passion-icon {
+    font-size: 3em;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 5px 15px rgba(6, 182, 212, 0.5));
+}
+
+.passion-nom {
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+/* section parcours */
+.timeline {
+    position: relative;
+    padding-left: 40px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, var(--couleur-principale), var(--couleur-secondaire));
+    border-radius: 10px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 40px;
+    padding: 25px;
+    background: var(--couleur-carte);
+    border-radius: 15px;
+    border-left: 4px solid var(--couleur-principale);
+    transition: all 0.3s ease;
+}
+
+.timeline-item:hover {
+    transform: translateX(10px);
+    box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -44px;
+    top: 30px;
+    width: 16px;
+    height: 16px;
+    background: var(--couleur-principale);
+    border-radius: 50%;
+    border: 4px solid var(--couleur-fond);
+    box-shadow: 0 0 0 4px var(--couleur-carte);
+}
+
+.timeline-annee {
+    color: var(--couleur-principale);
+    font-weight: 800;
+    font-size: 1.6em;
+    margin-bottom: 10px;
+}
+
+.timeline-titre {
+    font-size: 1.5em;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+
+.timeline-desc {
+    color: var(--couleur-texte-gris);
+}
+
+/* section projets */
+.projets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.projet-card {
+    background: var(--couleur-carte);
+    padding: 30px;
+    border-radius: 20px;
+    border: 2px solid rgba(6, 182, 212, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.projet-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--couleur-principale), var(--couleur-secondaire));
+}
+
+.projet-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--couleur-principale);
+    box-shadow: 0 20px 40px rgba(6, 182, 212, 0.4);
+}
+
+.projet-titre {
+    font-size: 1.5em;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--couleur-principale);
+}
+
+.projet-desc {
+    color: var(--couleur-texte-gris);
+    margin-bottom: 20px;
+    line-height: 1.7;
+}
+
+.projet-lien {
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, var(--couleur-principale), var(--couleur-secondaire));
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.projet-lien:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(6, 182, 212, 0.5);
+}
+
+/* section competences */
+.competences-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.competences-bloc {
+    background: var(--couleur-carte);
+    padding: 30px;
+    border-radius: 20px;
+    border: 2px solid rgba(6, 182, 212, 0.2);
+}
+
+.competences-bloc h3 {
+    color: var(--couleur-principale);
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+.tag {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 8px 8px 8px 0;
+    background: linear-gradient(135deg, var(--couleur-principale), var(--couleur-secondaire));
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.tag:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 20px rgba(6, 182, 212, 0.5);
+}
+
+/* section reves */
+.reves-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.reve-card {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(16, 185, 129, 0.1));
+    padding: 40px 30px;
+    border-radius: 20px;
+    border: 2px solid rgba(6, 182, 212, 0.3);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.reve-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(135deg, transparent, rgba(6, 182, 212, 0.2), transparent);
+    transform: rotate(45deg);
+    transition: all 0.6s ease;
+}
+
+.reve-card:hover::before {
+    top: 100%;
+    right: 100%;
+}
+
+.reve-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    border-color: var(--couleur-principale);
+    box-shadow: 0 20px 50px rgba(6, 182, 212, 0.4);
+}
+
+.reve-titre {
+    font-size: 1.8em;
+    font-weight: 800;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, var(--couleur-principale), var(--couleur-secondaire));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.reve-desc {
+    font-size: 1.1em;
+    color: var(--couleur-texte-gris);
+}
+
+/* section inspi */
+.inspirations-content {
+    background: var(--couleur-carte);
+    padding: 40px;
+    border-radius: 20px;
+    border: 2px solid rgba(6, 182, 212, 0.2);
+}
+
+.inspiration-categorie {
+    margin-bottom: 30px;
+}
+
+.inspiration-categorie h3 {
+    color: var(--couleur-principale);
+    margin-bottom: 15px;
+    font-size: 1.4em;
+}
+
+.inspiration-liste {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.inspiration-item {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(16, 185, 129, 0.2));
+    padding: 12px 24px;
+    border-radius: 15px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(6, 182, 212, 0.3);
+}
+
+.inspiration-item a {
+    color:var(--couleur-texte); 
+    text-decoration: none;
+    font-weight: inherit; 
+}
+
+.inspiration-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(6, 182, 212, 0.3);
+}
+
+/* fin (section tout en bas)*/
+.footer {
+    text-align: center;
+    padding: 60px 20px;
+    margin-top: 80px;
+    border-top: 2px solid rgba(6, 182, 212, 0.2);
+}
+
+.citation {
+    font-size: 1.8em;
+    font-style: italic;
+    color: var(--couleur-texte-gris);
+    margin-bottom: 30px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contact-info {
+    font-size: 1.2em;
+    color: var(--couleur-texte-gris);
+}
+
+.contact-info a {
+    color: var(--couleur-principale);
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.contact-info a:hover {
+    color: var(--couleur-secondaire);
+    text-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+}
+
+/* responsive */
+@media (max-width: 768px) {
+    .nom {
+        font-size: 2.5em;
+    }
+
+    .section-titre {
+        font-size: 2em;
+    }
+
+    .passions-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .timeline {
+        padding-left: 30px;
+    }
+}
